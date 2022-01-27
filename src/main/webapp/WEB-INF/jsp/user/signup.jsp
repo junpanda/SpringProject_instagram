@@ -14,21 +14,39 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	
+	
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	
+
 </head>
 <body>
-	<div id="wrap" >
-		<c:import url="/WEB-INF/jsp/include/header.jsp" />
-		<section class=" bg-light d-flex justify-content-center mt-3" id="body">
-			<div class="" id="textbody">
-				<form id="joinForm">
-					<input type="text" class="form-control mt-3" placeholder="아이디" id="loginIdInput">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호" id="passwordInput">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호 확인" id="passwordCheckInput">
-					<input type="text" class="form-control mt-3" placeholder="이름" id="nameInput">
-					<input type="text" class="form-control mt-3" placeholder="이메일" id="emailInput">
-					<button type="submit" class="btn btn-block mt-3 btn-primary" id="joinBtn">회원가입</button>
-				</form>
+	<div id="wrap" class="bg-light pt-5">
+		<section class="d-flex justify-content-center">
+			<div class="bg-white" id="textbody1">
+				<div class="m-4">
+					<form id="joinForm">
+						<div class="text-center mt-4">
+							<a href="/user/signin_view" id = "mainA"><h1>pandagram</h1></a>	
+						</div>
+						<div class="text-center mt-1"> 
+							친구들의 사진과 동영상을 보려면 <br>가입하세요.
+						</div>
+						<input type="text" class="form-control mt-3" placeholder="아이디" id="loginIdInput">
+						<input type="password" class="form-control mt-3" placeholder="비밀번호" id="passwordInput">
+						<input type="password" class="form-control mt-3" placeholder="비밀번호 확인" id="passwordCheckInput">
+						<input type="text" class="form-control mt-3" placeholder="이름" id="nameInput">
+						<input type="text" class="form-control mt-3" placeholder="이메일" id="emailInput">
+						<button type="submit" class="btn btn-block mt-3 btn-primary" id="joinBtn">회원가입</button>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section class="d-flex justify-content-center mt-3 ">
+			<div id="textbody2" class="bg-white d-flex justify-content-center align-items-center">
+				<div>
+					계정이 있으신가요? <a href="/user/signin_view">로그인</a>
+				</div>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />

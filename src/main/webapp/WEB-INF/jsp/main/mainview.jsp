@@ -22,11 +22,15 @@
 				<h1>pandagram</h1>
 			</div>
 			<div>
-				${userName } <a href="/user/sign_out" id="logout">로그아웃</a>
+				${userName } <a href="/user/sign_out" id="logout" class="ml-1">로그아웃</a>
 			</div>
 		</header>
-		<section>
-		
+		<section id="mainbody">
+			<div class="mt-3 d-flex justify-content-center">
+				<div>
+					<textarea cols="50" rows="7" placeholder="내용을 입력하시오"></textarea>
+				</div>
+			</div>
 		</section>
 		
 		<hr class="footer_hr">
