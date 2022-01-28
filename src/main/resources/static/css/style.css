@@ -7,9 +7,18 @@
     font-style: normal;
 }
 
-#wrap{
+#user_wrap{
 	margin : auto;
 	height : 100vh;
+}
+
+#main_wrap{
+	margin : auto;
+	height : 100vh;
+}
+
+#main_header{
+	border-bottom : solid 2px #ccc;
 }
 
 #mainA{
@@ -20,6 +29,8 @@
 #mainA:visited { color: black; text-decoration: none;}
 #mainA:hover { color: black; text-decoration: none;}
 
+
+#faceA:hover { color: black; text-decoration: none;}
 
 #textbody1{
 	width : 350px;
@@ -32,9 +43,17 @@
 	border : 1px solid gray;
 }
 
-
 #mainbody{
-	
+	width : 350px;
+}
+
+
+#login_photo{
+	width : 80%;
+}
+
+#facebook_photo{
+	width : 7%
 }
 
 .footer_hr{

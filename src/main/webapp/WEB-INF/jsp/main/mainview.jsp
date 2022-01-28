@@ -16,23 +16,37 @@
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
-	<div id = "wrap">
-		<header  class = "d-flex align-items-center justify-content-between bg-info">
+	<div id = "main_wrap" class="bg-light ">
+		<header  class = "d-flex align-items-center justify-content-around bg-white pt-2 " id="main_header">
 			<div class = "ml-3">
-				<h1>pandagram</h1>
+				<a href="/main/view" id = "mainA"><h1>pandagram</h1></a>	
 			</div>
 			<div>
 				${userName } <a href="/user/sign_out" id="logout" class="ml-1">로그아웃</a>
 			</div>
 		</header>
-		<section id="mainbody">
-			<div class="mt-3 d-flex justify-content-center">
-				<div>
-					<textarea cols="50" rows="7" placeholder="내용을 입력하시오"></textarea>
+		<div class="d-flex justify-content-center">
+			<section id="mainbody" class="pt-3">
+				<div class="d-flex justify-content-center">
+					<div>
+						<textarea cols="50" rows="6" placeholder="내용을 입력하시오"></textarea>
+					</div>
 				</div>
-			</div>
-		</section>
-		
+				<div class="d-flex justify-content-center">
+					<input type="file" class="mt-3">
+					<button type="button" class="btn btn-success" id="saveBtn">업로드</button>
+				</div>
+				<div>
+					<div class="d-flex justify-content-between">
+						<div>닉네임</div>
+						<div>삭제기능</div>
+					</div>
+					<div>사진</div>
+					<div>인스타 내용</div>
+					<div>댓글쓰는 란</div>
+				</div>
+			</section>
+		</div>
 		<hr class="footer_hr">
 	
 		<footer class="d-flex align-items-center justify-content-center mt-3">

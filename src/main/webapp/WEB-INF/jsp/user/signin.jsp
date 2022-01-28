@@ -17,22 +17,29 @@
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
-	<div id = "wrap" class="bg-light pt-5">
+	<div id = "user_wrap" class="bg-light pt-5">
 			<section class="d-flex justify-content-center" id="body">
+				<div>
+					<img src="/static/photo/login.jpg" id = "login_photo">
+				</div>
 				<div class="bg-white" id="textbody1">
-					<div class="m-4">
+					<div class="text-center m-4">
 						<form id = "loginForm">
 							<div class="text-center mt-4 ">
 								<a href="/user/signin_view" id = "mainA"><h1>pandagram</h1></a>	
 							</div>
 							<input type="text" class="form-control mt-4" placeholder="아이디" id="loginIdInput">
 							<input type="password" class="form-control mt-3" placeholder="비밀번호" id="passwordInput">
-							<button type="submit" class="btn btn-block mt-3 btn-primary" id="joinBtn">로그인</button>
+							<button type="submit" class="btn btn-block mt-4 btn-primary" id="joinBtn">로그인</button>
 						</form>
+						<div class="mt-3">
+							
+							<a href="#" id = "faceA" class="text-info"><img src="/static/photo/facebook.png" id="facebook_photo" class="mr-1"> Facebook으로 로그인</a>
+						</div>
 					</div>
 				</div>
 			</section>
-			<section class="d-flex justify-content-center mt-3 ">
+			<section class="d-flex justify-content-center mt-5 ">
 				<div id="textbody2" class="bg-white d-flex justify-content-center align-items-center">
 					<div>
 						계정이 없으신가요? <a href="/user/signup_view">회원가입</a>

@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<div id="wrap" class="bg-light pt-5">
+	<div id="user_wrap" class="bg-light pt-5">
 		<section class="d-flex justify-content-center">
 			<div class="bg-white" id="textbody1">
 				<div class="m-4">
@@ -96,7 +96,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							//로그인 화면으로 이동
-							locatioin.href="/post/signin_view";
+							location.href="/user/signin_view";
 						}
 						else{
 							alert("회원가입 실패");
