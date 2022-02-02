@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/*사이트 폰트 */
 @font-face {
     font-family: 'BMEULJIRO';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
@@ -14,13 +14,14 @@
 
 #main_wrap{
 	margin : auto;
-	height : 100vh;
+
 }
 
 #main_header{
 	border-bottom : solid 2px #ccc;
 }
 
+/*판다그램 CSS   */
 #mainA{
 	font-family: 'BMEULJIRO';
 }
@@ -32,28 +33,61 @@
 
 #faceA:hover { color: black; text-decoration: none;}
 
-#textbody1{
+#userbody1{
 	width : 350px;
 	border : 1px solid gray;
 }
 
-#textbody2{
+#userbody2{
 	width : 350px;
 	height : 50px;
 	border : 1px solid gray;
 }
 
 #mainbody{
-	width : 350px;
+	width : 400px;
+}
+
+#mainbody_nic{
+	
 }
 
 
+/*글쓰기 CSS  */
+#picicon{
+	width : 10%;
+	position : absolute;
+	left : 10px;
+	bottom : 10px;
+}
+
+#input_file{
+	display : none; 
+}
+
+#textarea_div{
+	position : relative;
+}
+#saveBtn{
+	position : absolute;
+	right : 10px;
+	bottom : 15px;
+}
+
+/*사진 CSS  */
 #login_photo{
 	width : 80%;
 }
 
 #facebook_photo{
 	width : 7%
+}
+
+#pic_delete{
+	height : 25px;
+}
+.pic_heart{
+	height : 20px;
 }
 
 .footer_hr{

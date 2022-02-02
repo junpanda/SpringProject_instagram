@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.junpanda.instagram.feed.DAO.FeedDAO">
+	<insert id="insertFeed" parameterType="map">
+		INSERT INTO `feed`(
+				`userId`
+				,`nameView`
+				,`content`
+				,`createdAt`
+				,`updatedAt`
+			)
+			VALUES(
+				#{userId}
+				,#{nameView}
+				,#{content}
+				,now()
+				,now()
+			)
+	
+	</insert>
+	
+	<select id="selectFeedList" resultType="com.junpanda.instagram.feed.model.Feed"
+	parameterType="int">
+	
+		SELECT
+			`id`
+			,`userId`
+			,`nameView`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`feed`
+		ORDER BY `updatedAt` DESC
+	</select>
+
+</mapper>

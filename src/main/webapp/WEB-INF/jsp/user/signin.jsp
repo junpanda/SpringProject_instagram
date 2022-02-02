@@ -22,7 +22,7 @@
 				<div>
 					<img src="/static/photo/login.jpg" id = "login_photo">
 				</div>
-				<div class="bg-white" id="textbody1">
+				<div class="bg-white" id="userbody1">
 					<div class="text-center m-4">
 						<form id = "loginForm">
 							<div class="text-center mt-4 ">
@@ -40,7 +40,7 @@
 				</div>
 			</section>
 			<section class="d-flex justify-content-center mt-5 ">
-				<div id="textbody2" class="bg-white d-flex justify-content-center align-items-center">
+				<div id="userbody2" class="bg-white d-flex justify-content-center align-items-center">
 					<div>
 						계정이 없으신가요? <a href="/user/signup_view">회원가입</a>
 					</div>

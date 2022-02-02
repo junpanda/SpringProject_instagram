@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,23 +29,33 @@
 		<div class="d-flex justify-content-center">
 			<section id="mainbody" class="pt-3">
 				<div class="d-flex justify-content-center">
-					<div>
-						<textarea cols="50" rows="6" placeholder="내용을 입력하시오"></textarea>
+					<div id="textarea_div">
+						<textarea cols="50" rows="6" placeholder="내용을 입력하시오" id="contentInput"></textarea>
+						<label for="input_file">
+							<img src="/static/photo/picicon.png" id="picicon">
+						</label>
+						<input type="file" id="input_file">
+						<button type="button" class="btn btn-success" id="saveBtn">업로드</button>
 					</div>
 				</div>
-				<div class="d-flex justify-content-center">
-					<input type="file" class="mt-3">
-					<button type="button" class="btn btn-success" id="saveBtn">업로드</button>
-				</div>
-				<div>
-					<div class="d-flex justify-content-between">
-						<div>닉네임</div>
-						<div>삭제기능</div>
+				<c:forEach var="feed" items="${feedlist }">
+					<div class="pt-4">
+						<div class="d-flex justify-content-between bg-white" id="mainbody_nic">
+							<div>${feed.nameView }</div>
+							<div class="pr-2"><img src="/static/photo/delete.png" id="pic_delete"></div>
+						</div>
+						<div style="height:400px">사진</div>
+						<div>
+							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" id="heart1">
+							<img src="/static/photo/heart-icon2.png" class="pic_heart pr-2 d-none" id="heart2">
+							 개수
+						</div>
+						<div>${feed.content }</div>
+						<div>댓글들</div>
+						<div>댓글쓰는 란</div>
+						<hr>
 					</div>
-					<div>사진</div>
-					<div>인스타 내용</div>
-					<div>댓글쓰는 란</div>
-				</div>
+				</c:forEach>
 			</section>
 		</div>
 		<hr class="footer_hr">
@@ -58,8 +69,53 @@
 
 	<script>
 		$(document).ready(function(){
+			
 			$("#logout").on("click",function(){
 				alert("로그아웃 되었습니다.");
+			});
+			
+			$("#saveBtn").on("click",function(){
+				let content = $("#contentInput").val().trim();
+				
+				if(content == "") {
+					alert("내용을 입력하세요");
+					return ;
+				}
+				
+				var formData = new FormData();
+				formData.append("content",content);
+				/* formData.append("file",$("#fileInput")[0].files[0]); */
+			
+				
+				$.ajax({
+					type:"post",
+					url:"/feed/create",
+					data:{"content":content},
+					/* enctype:"multipart/form-data",//파일 업로드 필수
+					processData:false,//파일 업로드 필수
+					contentType:false,//파일 업로드 필수 */
+					success:function(data) {
+						if(data.result == "success") {
+							alert("피드 등록 완료");
+							location.href="/main/view";
+						} else {
+							alert("피드 등록 실패");
+						}
+					},
+					error:function() {
+						alert("에러발생");
+					}
+				});
+				
+			});
+			
+			$("#heart1").on("click",function(){
+				$("#heart1").addClass("d-none");
+				$("#heart2").removeClass("d-none");
+			});
+			$("#heart2").on("click",function(){
+				$("#heart2").addClass("d-none");
+				$("#heart1").removeClass("d-none");
 			});
 		});
 	</script>

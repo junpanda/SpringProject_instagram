@@ -23,7 +23,7 @@
 <body>
 	<div id="user_wrap" class="bg-light pt-5">
 		<section class="d-flex justify-content-center">
-			<div class="bg-white" id="textbody1">
+			<div class="bg-white" id="userbody1">
 				<div class="m-4">
 					<form id="joinForm">
 						<div class="text-center mt-4">
@@ -43,7 +43,7 @@
 			</div>
 		</section>
 		<section class="d-flex justify-content-center mt-3 ">
-			<div id="textbody2" class="bg-white d-flex justify-content-center align-items-center">
+			<div id="userbody2" class="bg-white d-flex justify-content-center align-items-center">
 				<div>
 					계정이 있으신가요? <a href="/user/signin_view">로그인</a>
 				</div>
