@@ -44,14 +44,19 @@
 							<div>${feed.nameView }</div>
 							<div class="pr-2"><img src="/static/photo/delete.png" id="pic_delete"></div>
 						</div>
-						<div style="height:400px">사진</div>
+						<div style="height:300px">
+							<img src="https://t1.daumcdn.net/cfile/tistory/240814485574155029" style="width:100%">
+						</div>
 						<div>
-							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2">
+							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
 							 개수
 						</div>
 						<div>${feed.content }</div>
 						<div>댓글들</div>
-						<div>댓글쓰는 란</div>
+						<div id="comment_div">
+							<input type="text" class="form-control" placeholder="댓글 달기" id="commentInput">
+							<button type="submit" class="btn btn-primary commentBtn" id="commentBtn" data-feed-id="${feed.id }">게시</button>
+						</div>
 						<hr>
 					</div>
 				</c:forEach>
@@ -109,11 +114,46 @@
 			});
 			
 			$(".pic_heart").on("click",function(){
+				let feedId = $(this).data("feed-id");
+				
 				if($(this).attr("src") == "/static/photo/heart-icon.png"){
 					$(this).attr("src","/static/photo/heart-icon2.png");
+					
+					$.ajax({
+						type:"post",
+						url:"/feedheart/love",
+						data:{"feedId":feedId},
+						success:function(data){
+							if(data.result == "success"){
+								return;
+							}
+							else{
+								alert("좋아요 누름 실패");
+							}
+						},
+						error:function(){
+							alert("에러발생");
+						}
+					});
 				}
 				else{
 					$(this).attr("src","/static/photo/heart-icon.png");
+					/* $.ajax({
+						type:"post",
+						url:"/feedheart/delete",
+						data:{"feedId":feedId},
+						success:function(data){
+							if(data.result == "success"){
+								alert("좋아요 취소 성공");
+							}
+							else{
+								alert("좋아요 취소 실패");
+							}
+						},
+						error:function(){
+							alert("에러발생");
+						}
+					}); */
 				}
 			});
 				

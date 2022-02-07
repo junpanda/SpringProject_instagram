@@ -36,5 +36,23 @@
 			`feed`
 		ORDER BY `updatedAt` DESC
 	</select>
+	
+	<insert id="insertloveFeed" parameterType="map">
+		INSERT INTO `feedheart`(
+				`userId`
+				,`nameView`
+				,`feedId`
+				,`createdAt`
+				,`updatedAt`
+			)
+			VALUES(
+				#{userId}
+				,#{nameView}
+				,#{feedId}
+				,now()
+				,now()
+			)
+	
+	</insert>
 
 </mapper>

@@ -73,6 +73,18 @@
 	right : 10px;
 	bottom : 15px;
 }
+/*댓글 CSS  */
+
+#comment_div{
+	position : relative;
+	
+}
+
+#commentBtn{
+	position : absolute;
+	right : 0px;
+	top : 0px;
+}
 
 /*사진 CSS  */
 #login_photo{

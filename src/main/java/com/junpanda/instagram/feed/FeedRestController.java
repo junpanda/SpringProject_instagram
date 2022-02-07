@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.junpanda.instagram.feed.BO.FeedBO;
 
 @RestController	
-@RequestMapping("/feed")
 public class FeedRestController {
 	
 	@Autowired
 	private FeedBO feedBO;
 	
-	@PostMapping("/create")
+	@PostMapping("/feed/create")
 	public Map<String, String> createFeed(
 			@RequestParam("content") String content,
 			HttpServletRequest request){
@@ -45,25 +44,53 @@ public class FeedRestController {
 			return result;
 	}
 	
-	@PostMapping("heart/love")
-	public Map<String, String> heartlove(
-			HttpServletRequest request){
-		
-		 HttpSession session = request.getSession();
-		 
-		//현재 로그인된 사용자의 user table
-		 int userId = (Integer)session.getAttribute("userId");
-		 String nameView = (String)session.getAttribute("userName");
-		
-		 Map<String, String> result = new HashMap<>();
-		
-		 if(count==1) {
-				result.put("result","success");
-			}
-			else {
-				result.put("result","fail");
-			}
-			return result;
-	}
-
+	
+	  @PostMapping("/feedheart/love") 
+	  public Map<String, String> heartlove(
+			  @RequestParam("feedId") int feedId,
+			  HttpServletRequest request){
+		  
+		  HttpSession session = request.getSession();
+		  
+		  //현재 로그인된 사용자의 user table 
+		  int userId = (Integer)session.getAttribute("userId"); 
+		  String nameView = (String)session.getAttribute("userName");
+		  
+		  Map<String, String> result = new HashMap<>();
+		  
+		  int count = feedBO.loveFeed(feedId, userId, nameView);
+		  
+		  if(count==1) { 
+			  result.put("result","success"); 
+			  } 
+		  else {
+			  result.put("result","fail"); 
+		  } 
+		  return result; 
+	  }
+	  
+	  @PostMapping("/feedheart/delete")
+	  public Map<String, String> heartdelet(
+			  @RequestParam("feedId") int feedId,
+			  HttpServletRequest request){
+		  
+		  HttpSession session = request.getSession();
+		  
+		  //현재 로그인된 사용자의 user table 
+		  int userId = (Integer)session.getAttribute("userId"); 
+		  
+		  Map<String, String> result = new HashMap<>();
+		  
+		  int count = feedBO.deleteloveFeed(feedId, userId);
+		  
+		  if(count==1) { 
+			  result.put("result","success"); 
+			  } 
+		  else {
+			  result.put("result","fail"); 
+		  } 
+		  return result; 
+		  
+	  }
+	 
 }
