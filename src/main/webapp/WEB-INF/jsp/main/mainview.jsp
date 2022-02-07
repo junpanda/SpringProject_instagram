@@ -46,8 +46,7 @@
 						</div>
 						<div style="height:400px">사진</div>
 						<div>
-							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" id="heart1">
-							<img src="/static/photo/heart-icon2.png" class="pic_heart pr-2 d-none" id="heart2">
+							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2">
 							 개수
 						</div>
 						<div>${feed.content }</div>
@@ -109,15 +108,17 @@
 				
 			});
 			
-			$("#heart1").on("click",function(){
-				$("#heart1").addClass("d-none");
-				$("#heart2").removeClass("d-none");
+			$(".pic_heart").on("click",function(){
+				if($(this).attr("src") == "/static/photo/heart-icon.png"){
+					$(this).attr("src","/static/photo/heart-icon2.png");
+				}
+				else{
+					$(this).attr("src","/static/photo/heart-icon.png");
+				}
 			});
-			$("#heart2").on("click",function(){
-				$("#heart2").addClass("d-none");
-				$("#heart1").removeClass("d-none");
-			});
+				
 		});
+			
 	</script>
 		
 </html>

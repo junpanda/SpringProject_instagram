@@ -43,8 +43,27 @@ public class FeedRestController {
 				result.put("result","fail");
 			}
 			return result;
-		 
+	}
+	
+	@PostMapping("heart/love")
+	public Map<String, String> heartlove(
+			HttpServletRequest request){
 		
+		 HttpSession session = request.getSession();
+		 
+		//현재 로그인된 사용자의 user table
+		 int userId = (Integer)session.getAttribute("userId");
+		 String nameView = (String)session.getAttribute("userName");
+		
+		 Map<String, String> result = new HashMap<>();
+		
+		 if(count==1) {
+				result.put("result","success");
+			}
+			else {
+				result.put("result","fail");
+			}
+			return result;
 	}
 
 }
