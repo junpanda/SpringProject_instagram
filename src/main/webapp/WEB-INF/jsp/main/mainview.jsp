@@ -52,10 +52,12 @@
 							 개수
 						</div>
 						<div>${feed.content }</div>
-						<div>댓글들</div>
+						<c:forEach var="comment" items="${commentlist }">
+							<div>${comment.comment }</div>
+						</c:forEach>
 						<div id="comment_div">
-							<input type="text" class="form-control" placeholder="댓글 달기" id="commentInput">
-							<button type="submit" class="btn btn-primary commentBtn" id="commentBtn" data-feed-id="${feed.id }">게시</button>
+								<input type="text" class="form-control commentInput" placeholder="댓글 달기" id="commentInput${feed.id }">
+								<button type="submit" class="btn btn-primary commentBtn" data-feed-id="${feed.id }">게시</button>
 						</div>
 						<hr>
 					</div>
@@ -78,6 +80,7 @@
 				alert("로그아웃 되었습니다.");
 			});
 			
+			/*게시물 올리기  */
 			$("#saveBtn").on("click",function(){
 				let content = $("#contentInput").val().trim();
 				
@@ -113,6 +116,32 @@
 				
 			});
 			
+			/*댓글 쓰기  */
+			$(".commentBtn").on("click",function(){
+				let feedId = $(this).data("feed-id");
+				let come = 'commentInput' + feedId;
+				let comment = $("#" + come).val();
+				
+				$.ajax({
+					type:"post",
+					url:"/comment/create",
+					data:{"feedId":feedId,"comment":comment},
+					success:function(data){
+						if(data.result == "success"){
+							alert("댓글 등록 완료");
+							location.href="/main/view";
+						}
+						else{
+							alert("댓글 실패");
+						}
+					},
+					error:function(){
+						alert("에러발생");
+					}
+				});
+			});
+			
+			/*좋아요 누르기  */
 			$(".pic_heart").on("click",function(){
 				let feedId = $(this).data("feed-id");
 				
@@ -138,13 +167,14 @@
 				}
 				else{
 					$(this).attr("src","/static/photo/heart-icon.png");
-					/* $.ajax({
+					
+					$.ajax({
 						type:"post",
 						url:"/feedheart/delete",
 						data:{"feedId":feedId},
 						success:function(data){
 							if(data.result == "success"){
-								alert("좋아요 취소 성공");
+								return;
 							}
 							else{
 								alert("좋아요 취소 실패");
@@ -153,7 +183,7 @@
 						error:function(){
 							alert("에러발생");
 						}
-					}); */
+					}); 
 				}
 			});
 				

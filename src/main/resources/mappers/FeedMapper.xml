@@ -54,5 +54,11 @@
 			)
 	
 	</insert>
+	<delete id="deleteloveFeed" parameterType="int">
+		DELETE FROM `feedheart`
+		WHERE
+			`userId` = #{userId} AND `feedId` = #{feedId}
+	
+	</delete>
 
 </mapper>
