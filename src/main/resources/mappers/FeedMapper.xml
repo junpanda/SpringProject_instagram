@@ -9,6 +9,7 @@
 				`userId`
 				,`nameView`
 				,`content`
+				,`imagePath`
 				,`createdAt`
 				,`updatedAt`
 			)
@@ -16,6 +17,7 @@
 				#{userId}
 				,#{nameView}
 				,#{content}
+				,#{imagePath}
 				,now()
 				,now()
 			)
@@ -30,11 +32,27 @@
 			,`userId`
 			,`nameView`
 			,`content`
+			,`imagePath`
 			,`createdAt`
 			,`updatedAt`
 		FROM
 			`feed`
 		ORDER BY `updatedAt` DESC
+	</select>
+	
+	<select id="selectFeed" resultType="com.junpanda.instagram.feed.model.Feed">
+		SELECT
+			`id`
+			,`userId`
+			,`nameView`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`feed`
+		WHERE
+			`id` = #{feedId}
 	</select>
 	
 	<insert id="insertloveFeed" parameterType="map">
@@ -54,11 +72,31 @@
 			)
 	
 	</insert>
+	
 	<delete id="deleteloveFeed" parameterType="int">
 		DELETE FROM `feedheart`
 		WHERE
 			`userId` = #{userId} AND `feedId` = #{feedId}
-	
 	</delete>
+
+	<delete id="deleteFeed" parameterType="int">
+		DELETE FROM `feed`
+		WHERE
+			`Id` =  #{feedId}
+	</delete>
+	
+	<select id="selectFeedHeartList" resultType="com.junpanda.instagram.feed.model.FeedHeart"
+	parameterType="int">
+		SELECT
+			`id`
+			,`userId`
+			,`feedId`
+			,`nameView`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`feedheart`
+	</select>
+	
 
 </mapper>

@@ -23,7 +23,7 @@
 				<a href="/main/view" id = "mainA"><h1>pandagram</h1></a>	
 			</div>
 			<div>
-				${userName } <a href="/user/sign_out" id="logout" class="ml-1">로그아웃</a>
+				<span class="font-weight-bold">${userName }</span> <a href="/user/sign_out" id="logout" class="ml-1">로그아웃</a>
 			</div>
 		</header>
 		<div class="d-flex justify-content-center">
@@ -41,24 +41,50 @@
 				<c:forEach var="feed" items="${feedlist }">
 					<div class="pt-4">
 						<div class="d-flex justify-content-between bg-white" id="mainbody_nic">
-							<div>${feed.nameView }</div>
-							<div class="pr-2"><img src="/static/photo/delete.png" id="pic_delete"></div>
+							<div class="font-weight-bold">
+								${feed.nameView }
+							</div>
+							<div class="pr-2">
+								<img src="/static/photo/delete.png" id="pic_delete" class="pic_delete" 
+								data-feed-id="${feed.id }" data-user-id="${feed.userId }">
+							</div>
 						</div>
-						<div style="height:300px">
-							<img src="https://t1.daumcdn.net/cfile/tistory/240814485574155029" style="width:100%">
+						<div style="height:300px" class="d-flex justify-content-center">
+							<img src="${feed.imagePath }" class="main_image">
 						</div>
-						<div>
-							<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
+						<div class="pb-2">
+							<c:forEach var="feedheart" items="${feedheartlist }">
+								<c:if test= "${feedheart.userId == userId && feedheart.feedId == feed.id }">
+									<img src="/static/photo/heart-icon2.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
+									<c:set var = "check" value = "${feed.id }"/>
+								</c:if>
+							</c:forEach>
+							<c:if test= "${check != feed.id}">
+								<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
+							</c:if>
 							 개수
 						</div>
-						<div>${feed.content }</div>
+						<div class="pb-2 d-flex">
+							<div class="font-weight-bold pr-2">
+								${feed.nameView }
+							</div>
+							<div>
+								${feed.content }
+							</div>
+						</div>
+						<div class=" mb-2 font-weight-bold bg-white align-self-center">
+							댓글
+						</div>
 						<c:forEach var="comment" items="${commentlist }">
 							 <c:if test="${feed.id == comment.feedId }">
-								<div>${comment.nameView } ${comment.comment }  </div>
+								<div class="d-flex pb-1">
+									<div class="pr-2 font-weight-bold">${comment.nameView }</div> 
+									<div>${comment.comment }</div>  
+								</div>
 							 </c:if> 
 						</c:forEach>
-						<div id="comment_div">
-								<input type="text" class="form-control commentInput" placeholder="댓글 달기" id="commentInput${feed.id }">
+						<div id="comment_div" class="pt-1">
+								<input type="text" class="comment_input commentInput" placeholder="댓글 달기" id="commentInput${feed.id }">
 								<button type="submit" class="btn btn-primary commentBtn" data-feed-id="${feed.id }">게시</button>
 						</div>
 						<hr>
@@ -93,16 +119,16 @@
 				
 				var formData = new FormData();
 				formData.append("content",content);
-				/* formData.append("file",$("#fileInput")[0].files[0]); */
+			 	formData.append("file",$("#input_file")[0].files[0]); 
 			
 				
 				$.ajax({
 					type:"post",
 					url:"/feed/create",
-					data:{"content":content},
-					/* enctype:"multipart/form-data",//파일 업로드 필수
+					data:formData,
+					enctype:"multipart/form-data",//파일 업로드 필수
 					processData:false,//파일 업로드 필수
-					contentType:false,//파일 업로드 필수 */
+					contentType:false,//파일 업로드 필수 
 					success:function(data) {
 						if(data.result == "success") {
 							alert("피드 등록 완료");
@@ -115,6 +141,52 @@
 						alert("에러발생");
 					}
 				});
+				
+			});
+			
+			/*게시물 지우기  */
+			$(".pic_delete").on("click",function(){
+				let feedId = $(this).data("feed-id");
+				let userId = $(this).data("user-id");
+				
+				if(userId == ${userId}){
+					$.ajax({
+						type:"post",
+						url:"/feed/delete",
+						data:{"feedId":feedId},
+						success:function(data){
+							if(data.result == "success"){
+								alert("피드 삭제 완료");
+								location.href="/main/view";
+							}
+							else{
+								alert("피드 삭제 실패");
+							}
+						},
+						error:function(){
+							alert("에러발생");
+						}
+					});
+					$.ajax({
+						type:"post",
+						url:"/comment/feed_delete",
+						data:{"feedId":feedId},
+						success:function(data){
+							if(data.result == "success"){
+								return ;
+							}
+							else{
+								alert("댓글 삭제 실패");
+							}
+						},
+						error:function(){
+							alert("에러발생");
+						}
+					});
+				}
+				else{
+					alert("삭제하실 수 없는 게시물입니다.");
+				}
 				
 			});
 			

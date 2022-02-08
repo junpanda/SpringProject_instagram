@@ -2,12 +2,11 @@ package com.junpanda.instagram.feed.model;
 
 import java.sql.Date;
 
-public class Feed {
+public class FeedHeart {
 	private int id;
 	private int userId;
+	private int feedId;
 	private String nameView;
-	private String content;
-	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -22,17 +21,17 @@ public class Feed {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public int getFeedId() {
+		return feedId;
+	}
+	public void setFeedId(int feedId) {
+		this.feedId = feedId;
+	}
 	public String getNameView() {
 		return nameView;
 	}
 	public void setNameView(String nameView) {
 		this.nameView = nameView;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -46,12 +45,5 @@ public class Feed {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-	
 	
 }

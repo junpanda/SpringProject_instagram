@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.junpanda.instagram.common.FileManagerService;
 import com.junpanda.instagram.feed.DAO.FeedDAO;
 import com.junpanda.instagram.feed.model.Feed;
+import com.junpanda.instagram.feed.model.FeedHeart;
 
 @Service
 public class FeedBO {
@@ -14,9 +17,19 @@ public class FeedBO {
 	@Autowired
 	private FeedDAO feedDAO;
 	
-	public int createFeed(int userId, String nameView, String content) {
+	public int createFeed(int userId, String nameView, String content, MultipartFile file) {
 		
-		return feedDAO.insertFeed(userId, nameView, content);
+		//파일을 컴퓨터(서버)에 저장하고, 클라이언트(브라우저)가 접근 가능한 주소를 만들어 낸다.
+		String filePath = FileManagerService.saveFile(userId,file);
+				
+		return feedDAO.insertFeed(userId, nameView, content,filePath);
+	}
+	
+	public int deleteFeed(int feedId) {
+		
+		Feed feed =feedDAO.selectFeed(feedId);
+		FileManagerService.removeFile(feed.getImagePath());
+		return feedDAO.deleteFeed(feedId);
 	}
 	
 	public List<Feed> getFeedList(){
@@ -30,4 +43,10 @@ public class FeedBO {
 	public int deleteloveFeed(int feedId, int userId) {
 		return feedDAO.deleteloveFeed(feedId, userId);
 	}
+	
+	public List<FeedHeart> getFeedHeartList(){
+		return feedDAO.selectFeedHeartList();
+	}
+	
+	
 }

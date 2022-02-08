@@ -74,16 +74,9 @@
 	bottom : 15px;
 }
 /*댓글 CSS  */
-
-#comment_div{
-	position : relative;
-	
-}
-
-#commentBtn{
-	position : absolute;
-	right : 0px;
-	top : 0px;
+.comment_input{
+	width : 320px;
+	font-size : 15px;
 }
 
 /*사진 CSS  */
@@ -93,6 +86,9 @@
 
 #facebook_photo{
 	width : 7%
+}
+.main_image{
+	height:100%;
 }
 
 #pic_delete{
@@ -106,3 +102,4 @@
     height: 2px;
     background: #ccc;
 }
+

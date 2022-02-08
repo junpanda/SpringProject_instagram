@@ -34,4 +34,10 @@
 		FROM
 			`comment`
 	</select>
+	
+	<delete id="deleteFeedComment" parameterType="int">
+		DELETE FROM `comment`
+		WHERE
+			`feedId` = #{feedId}
+	</delete>
 </mapper>
