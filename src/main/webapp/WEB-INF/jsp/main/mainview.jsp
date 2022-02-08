@@ -53,7 +53,9 @@
 						</div>
 						<div>${feed.content }</div>
 						<c:forEach var="comment" items="${commentlist }">
-							<div>${comment.comment }</div>
+							 <c:if test="${feed.id == comment.feedId }">
+								<div>${comment.nameView } ${comment.comment }  </div>
+							 </c:if> 
 						</c:forEach>
 						<div id="comment_div">
 								<input type="text" class="form-control commentInput" placeholder="댓글 달기" id="commentInput${feed.id }">
@@ -121,6 +123,11 @@
 				let feedId = $(this).data("feed-id");
 				let come = 'commentInput' + feedId;
 				let comment = $("#" + come).val();
+				
+				if(comment == "") {
+					alert("내용을 입력하세요");
+					return ;
+				}
 				
 				$.ajax({
 					type:"post",
