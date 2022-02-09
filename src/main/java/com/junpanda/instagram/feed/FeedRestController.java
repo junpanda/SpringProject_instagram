@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.junpanda.instagram.comment.BO.CommentBO;
 import com.junpanda.instagram.feed.BO.FeedBO;
 
 @RestController	
@@ -20,6 +20,9 @@ public class FeedRestController {
 	
 	@Autowired
 	private FeedBO feedBO;
+	
+	@Autowired
+	private CommentBO commentBO;
 	
 	@PostMapping("/feed/create")
 	public Map<String, String> createFeed(
@@ -53,6 +56,10 @@ public class FeedRestController {
 		Map<String, String> result = new HashMap<>();
 		  
 		int count = feedBO.deleteFeed(feedId);
+		
+		int count1 = commentBO.deleteFeedComment(feedId);
+		
+		int count2 = feedBO.deleteFeedHeart(feedId);
 		  
 		if(count==1) { 
 			  result.put("result","success"); 
@@ -89,7 +96,7 @@ public class FeedRestController {
 	  }
 	  
 	  @PostMapping("/feedheart/delete")
-	  public Map<String, String> heartdelet(
+	  public Map<String, String> heartdelete(
 			  @RequestParam("feedId") int feedId,
 			  HttpServletRequest request){
 		  

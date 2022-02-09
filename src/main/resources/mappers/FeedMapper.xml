@@ -78,6 +78,12 @@
 		WHERE
 			`userId` = #{userId} AND `feedId` = #{feedId}
 	</delete>
+	
+	<delete id="deleteFeedHeart" parameterType="int">
+		DELETE FROM `feedheart`
+		WHERE
+			`feedId` = #{feedId}
+	</delete>
 
 	<delete id="deleteFeed" parameterType="int">
 		DELETE FROM `feed`

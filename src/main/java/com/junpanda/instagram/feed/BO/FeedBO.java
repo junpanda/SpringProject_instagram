@@ -45,6 +45,10 @@ public class FeedBO {
 		return feedDAO.deleteloveFeed(feedId, userId);
 	}
 	
+	public int deleteFeedHeart(int feedId) {
+		return feedDAO.deleteFeedHeart(feedId);
+	}
+	
 	public List<FeedHeart> getFeedHeartList(){
 		return feedDAO.selectFeedHeartList();
 	}

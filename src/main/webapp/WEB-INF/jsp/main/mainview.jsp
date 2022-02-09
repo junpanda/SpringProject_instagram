@@ -149,7 +149,7 @@
 					success:function(data) {
 						if(data.result == "success") {
 							alert("피드 등록 완료");
-							location.href="/main/view";
+							location.reload();
 						} else {
 							alert("피드 등록 실패");
 						}
@@ -174,7 +174,7 @@
 						success:function(data){
 							if(data.result == "success"){
 								alert("피드 삭제 완료");
-								location.href="/main/view";
+								location.reload();
 							}
 							else{
 								alert("피드 삭제 실패");
@@ -184,7 +184,7 @@
 							alert("에러발생");
 						}
 					});
-					$.ajax({
+					/* $.ajax({
 						type:"post",
 						url:"/comment/feed_delete",
 						data:{"feedId":feedId},
@@ -199,7 +199,7 @@
 						error:function(){
 							alert("에러발생");
 						}
-					});
+					}); */
 				}
 				else{
 					alert("삭제하실 수 없는 게시물입니다.");
@@ -225,7 +225,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("댓글 등록 완료");
-							location.href="/main/view";
+							location.reload();
 						}
 						else{
 							alert("댓글 실패");
@@ -250,7 +250,7 @@
 						success:function(data){
 							if(data.result == "success"){
 								alert("댓글 삭제 완료");
-								location.href="/main/view";
+								location.reload();
 							}
 							else{
 								alert("댓글 삭제 실패");

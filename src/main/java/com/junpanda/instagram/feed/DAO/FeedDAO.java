@@ -31,6 +31,9 @@ public interface FeedDAO {
 			@Param("feedId") int feedId,
 			@Param("userId") int userId);
 	
+	public int deleteFeedHeart(
+			@Param("feedId") int feedId);
+	
 	public List<FeedHeart> selectFeedHeartList();
 	
 	public Feed selectFeed(@Param("feedId") int feedId);
