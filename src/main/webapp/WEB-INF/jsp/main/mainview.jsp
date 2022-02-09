@@ -62,7 +62,13 @@
 							<c:if test= "${check != feed.id}">
 								<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
 							</c:if>
-							 개수
+							<c:forEach var="count" items="${countlist }">
+							
+							 	<c:if test="${count.feedId ==  feed.id}">
+							 	좋아요 ${count.count }개
+							 	</c:if>
+							
+							 </c:forEach>
 						</div>
 						<div class="pb-2 d-flex">
 							<div class="font-weight-bold pr-2">

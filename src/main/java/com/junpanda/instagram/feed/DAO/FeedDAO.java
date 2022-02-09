@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.junpanda.instagram.feed.model.Feed;
 import com.junpanda.instagram.feed.model.FeedHeart;
+import com.junpanda.instagram.feed.model.FeedHeartCount;
 
 @Repository
 public interface FeedDAO {
@@ -33,4 +34,6 @@ public interface FeedDAO {
 	public List<FeedHeart> selectFeedHeartList();
 	
 	public Feed selectFeed(@Param("feedId") int feedId);
+	
+	public List<FeedHeartCount> getcount();
 }

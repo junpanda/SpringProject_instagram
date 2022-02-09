@@ -12,6 +12,7 @@ import com.junpanda.instagram.comment.model.Comment;
 import com.junpanda.instagram.feed.BO.FeedBO;
 import com.junpanda.instagram.feed.model.Feed;
 import com.junpanda.instagram.feed.model.FeedHeart;
+import com.junpanda.instagram.feed.model.FeedHeartCount;
 
 @Controller
 public class MainController {
@@ -34,6 +35,9 @@ public class MainController {
 		
 		List<FeedHeart> feedheartlist = feedBO.getFeedHeartList();
 		model.addAttribute("feedheartlist",feedheartlist);
+		
+		List<FeedHeartCount> countlist = feedBO.getcount();
+		model.addAttribute("countlist",countlist);
 		
 		return "main/mainview";
 	}

@@ -10,6 +10,7 @@ import com.junpanda.instagram.common.FileManagerService;
 import com.junpanda.instagram.feed.DAO.FeedDAO;
 import com.junpanda.instagram.feed.model.Feed;
 import com.junpanda.instagram.feed.model.FeedHeart;
+import com.junpanda.instagram.feed.model.FeedHeartCount;
 
 @Service
 public class FeedBO {
@@ -48,5 +49,8 @@ public class FeedBO {
 		return feedDAO.selectFeedHeartList();
 	}
 	
+	public List<FeedHeartCount> getcount(){
+		return feedDAO.getcount();
+	}
 	
 }

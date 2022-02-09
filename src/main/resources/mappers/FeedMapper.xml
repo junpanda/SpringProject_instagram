@@ -98,5 +98,15 @@
 			`feedheart`
 	</select>
 	
+	<select id="getcount" resultType="com.junpanda.instagram.feed.model.FeedHeartCount"
+	parameterType="int">
+		SELECT
+			`feedId`
+			,count(*) as count
+		FROM
+			`feedheart`
+		GROUP BY `feedId`
+	</select>
+	
 
 </mapper>
