@@ -40,4 +40,10 @@
 		WHERE
 			`feedId` = #{feedId}
 	</delete>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM `comment`
+		WHERE
+			`Id` = #{commentId}
+	</delete>
 </mapper>

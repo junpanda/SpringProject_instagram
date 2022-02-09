@@ -47,6 +47,24 @@ public class CommentRestController {
 			return result;
 	  }
 	  
+	  @PostMapping("/delete")
+	  public Map<String, String> commentdelete(
+			  @RequestParam("commentId") int commentId){
+		  
+		  Map<String, String> result = new HashMap<>();
+				  
+			int count = commentBO.deleteComment(commentId);
+			
+			if(count==1) { 	
+				result.put("result","success"); 
+			} 
+			else {
+				 result.put("result","fail"); 
+			} 
+			return result;
+		  
+	  }
+	  
 	  @PostMapping("/feed_delete")
 	  public Map<String, String> feeddelete(
 			@RequestParam("feedId") int feedId){

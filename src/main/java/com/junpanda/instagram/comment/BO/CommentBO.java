@@ -25,4 +25,8 @@ public class CommentBO {
 	public int deleteFeedComment(int feedId) {
 		return commentDAO.deleteFeedComment(feedId);
 	}
+	
+	public int deleteComment(int commentId) {
+		return commentDAO.deleteComment(commentId);
+	}
 }

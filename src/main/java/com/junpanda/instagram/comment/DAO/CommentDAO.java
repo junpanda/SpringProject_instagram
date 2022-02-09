@@ -18,4 +18,6 @@ public interface CommentDAO {
 	public List<Comment> selectCommentList();
 	
 	public int deleteFeedComment(@Param("feedId") int feedId);
+	
+	public int deleteComment(@Param("commentId") int commentId);
 }

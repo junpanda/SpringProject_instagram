@@ -40,6 +40,7 @@
 				</div>
 				<c:forEach var="feed" items="${feedlist }">
 					<div class="pt-4">
+						<!--사용자 이름, 삭제기능  -->
 						<div class="d-flex justify-content-between bg-white" id="mainbody_nic">
 							<div class="font-weight-bold">
 								${feed.nameView }
@@ -49,9 +50,11 @@
 								data-feed-id="${feed.id }" data-user-id="${feed.userId }">
 							</div>
 						</div>
+						<!--사진  -->
 						<div style="height:300px" class="d-flex justify-content-center">
 							<img src="${feed.imagePath }" class="main_image">
 						</div>
+						<!--좋아요 기능  -->
 						<div class="pb-2">
 							<c:forEach var="feedheart" items="${feedheartlist }">
 								<c:if test= "${feedheart.userId == userId && feedheart.feedId == feed.id }">
@@ -63,13 +66,16 @@
 								<img src="/static/photo/heart-icon.png" class="pic_heart pr-2" data-feed-id="${feed.id }">
 							</c:if>
 							<c:forEach var="count" items="${countlist }">
-							
 							 	<c:if test="${count.feedId ==  feed.id}">
-							 	좋아요 ${count.count }개
+								 	좋아요 <span class="count${count.feedId }">${count.count }</span>개
+								 	<c:set var = "check2" value = "${count.feedId }"/>
 							 	</c:if>
-							
 							 </c:forEach>
+							 <c:if test= "${check2 != feed.id}">
+							 좋아요 <span class="count${feed.id }">0</span>개
+							 </c:if>
 						</div>
+						<!--피드 내용  -->
 						<div class="pb-2 d-flex">
 							<div class="font-weight-bold pr-2">
 								${feed.nameView }
@@ -78,6 +84,7 @@
 								${feed.content }
 							</div>
 						</div>
+						<!--댓글 -->
 						<div class=" mb-2 font-weight-bold bg-white align-self-center">
 							댓글
 						</div>
@@ -85,7 +92,11 @@
 							 <c:if test="${feed.id == comment.feedId }">
 								<div class="d-flex pb-1">
 									<div class="pr-2 font-weight-bold">${comment.nameView }</div> 
-									<div>${comment.comment }</div>  
+									<div>${comment.comment }</div>
+									<div class="pl-2">
+										<img src="/static/photo/x-icon.png" class="x-icon" 
+										data-comment-id="${comment.id }" data-user-id="${comment.userId }">
+									</div>  
 								</div>
 							 </c:if> 
 						</c:forEach>
@@ -226,12 +237,47 @@
 				});
 			});
 			
+			/*댓글 지우기  */
+			$(".x-icon").on("click",function(){
+				let commentId = $(this).data("comment-id");
+				let userId = $(this).data("user-id")
+				
+				if(userId == ${userId}){
+					$.ajax({
+						type:"post",
+						url:"/comment/delete",
+						data:{"commentId":commentId},
+						success:function(data){
+							if(data.result == "success"){
+								alert("댓글 삭제 완료");
+								location.href="/main/view";
+							}
+							else{
+								alert("댓글 삭제 실패");
+							}
+						},
+						error:function(){
+							alert("에러발생");
+						}
+					});
+				}
+				else{
+					alert("삭제하실 수 없는 댓글입니다.");
+				}
+			});
+			
 			/*좋아요 누르기  */
 			$(".pic_heart").on("click",function(){
 				let feedId = $(this).data("feed-id");
+				let count = 'count' + feedId;
+				
+				
 				
 				if($(this).attr("src") == "/static/photo/heart-icon.png"){
 					$(this).attr("src","/static/photo/heart-icon2.png");
+					let num = $("."+count).text();
+					num++;
+					$("."+count).text(num);
 					
 					$.ajax({
 						type:"post",
@@ -252,6 +298,9 @@
 				}
 				else{
 					$(this).attr("src","/static/photo/heart-icon.png");
+					let num = $("."+count).text();
+					num--;
+					$("."+count).text(num);
 					
 					$.ajax({
 						type:"post",
