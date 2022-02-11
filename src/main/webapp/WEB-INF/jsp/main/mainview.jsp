@@ -134,6 +134,12 @@
 					return ;
 				}
 				
+				//파일 유효성 검사
+				if($("#fileInput")[0].files[0].length == 0){
+					alert("파일을 선택해주세요");
+					return ;
+				}
+				
 				var formData = new FormData();
 				formData.append("content",content);
 			 	formData.append("file",$("#input_file")[0].files[0]); 
