@@ -39,6 +39,7 @@
 					</div>
 				</div>
 				<!--새롭게 해보는 작업  -->
+				<!--실험 2  -->
 				<c:forEach var="feed" items="${feedlist }">
 					<div class="pt-4">
 						<!--사용자 이름, 삭제기능  -->
