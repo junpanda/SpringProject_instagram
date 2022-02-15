@@ -1,5 +1,6 @@
 package com.junpanda.instagram.feed.BO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.junpanda.instagram.feed.DAO.FeedDAO;
 import com.junpanda.instagram.feed.model.Feed;
 import com.junpanda.instagram.feed.model.FeedHeart;
 import com.junpanda.instagram.feed.model.FeedHeartCount;
+import com.junpanda.instagram.feed.model.NewFeed;
 
 @Service
 public class FeedBO {
@@ -56,5 +58,13 @@ public class FeedBO {
 	public List<FeedHeartCount> getcount(){
 		return feedDAO.getcount();
 	}
+	
+	/*
+	 * public List<NewFeed> getNewFeedList(){ List<NewFeed> newfeed = new
+	 * ArrayList<>();
+	 * 
+	 * 
+	 * }
+	 */
 	
 }
